@@ -1,0 +1,267 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "93675b37-d993-5d12-97fc-a317c191ef9c")
+	(paper "A4")
+	(title_block
+		(title "Doc - Revision History")
+		(date "${RELEASE_DATE}")
+		(rev "${REVISION}")
+		(company "${COMPANY}")
+		(comment 1 "PRELIMINARY: not for fabrication")
+		(comment 2 "Edited in KiCad: do not regenerate")
+		(comment 3 "Netlist: expected_netlist_rev1min.csv")
+		(comment 4 "Not a safety sign-off; dummy loads")
+		(comment 9 "${REVIEWER}")
+	)
+	(lib_symbols)
+	(text_box "23-OCT-2026 - Initial Capture\nVersion: 1.0.0 Draft"
+		(exclude_from_sim no)
+		(at 20.32 31.75 0)
+		(size 57.15 7.62)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "212f209a-8907-4851-b14c-6ed16e11bb2f")
+	)
+	(text_box "25-OCT-2026 - Minimal Rev 1\nVersion: 2.0.0-dev Preliminary"
+		(exclude_from_sim no)
+		(at 86.36 31.75 0)
+		(size 57.15 7.62)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "3ed2e9e5-7cb4-4817-8aef-061b3f324478")
+	)
+	(text_box "- Cut the board to the analog path for bench bring-up: HV input, clamp, buffer, Howland pump, limiter, PhotoMOS, TVS, read-back.\n\n- Removed the trips, latch, power-on reset, rail monitors, enable logic and parking switch (kept in simulation for Rev 2).\n\n- Changed rail shunts RSP/RSN to 10 Ohm for current measurement.\n\n- Changed FPGA connector J3 to DAC_CMD, ENABLE, I_RETURN_ADC, V_ELEC_ADC, VMID_REF and grounds; no power.\n\n- Added the read-back stage (OPA4192) for the FPGA ADC.\n\n- Added bench bias jumpers JP1/JP2, current-loop header JP3, 29 test loops and M3 mounting holes."
+		(exclude_from_sim no)
+		(at 88.9 40.64 0)
+		(size 58.42 111.76)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "4f65b246-5697-4088-aad8-5b927c84cd4b")
+	)
+	(text_box "26-OCT-2026 - Schematic Review\nVersion: 2.0.0-dev Preliminary"
+		(exclude_from_sim no)
+		(at 152.4 31.75 0)
+		(size 57.15 7.62)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "4fa348ff-b354-4db6-b5dd-c30df8be4c7b")
+	)
+	(text_box "[2] Doc - Revision History"
+		(exclude_from_sim no)
+		(at 17.08 16.51 0)
+		(size 262.84 10.16)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Times New Roman")
+				(size 7 7)
+				(thickness 1.4)
+				(bold yes)
+				(color 162 22 34 1)
+			)
+			(justify top)
+		)
+		(uuid "4ff28714-be77-520b-a992-b81471c22299")
+	)
+	(text_box "- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________\n\n- _________________________________"
+		(exclude_from_sim no)
+		(at 220.98 40.64 0)
+		(size 58.42 111.76)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "59c1f4a5-74b8-47ad-b32f-fb27ae35f91c")
+	)
+	(text_box "DD-MMM-YYYY - Next Revision\nVersion: ______"
+		(exclude_from_sim no)
+		(at 218.44 31.75 0)
+		(size 57.15 7.62)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left top)
+		)
+		(uuid "5f21480f-3836-4ccd-a3e1-5754781b7872")
+	)
+	(text_box "- Captured the full Rev 1 channel from the simulated netlist and the P4 BoM: 14 sheets, 156 parts.\n\n- Included the full safety chain: over-current and mismatch trips, fault latch, power-on reset, rail monitors, parking switch.\n\n- Netlist matched expected_netlist.csv with 0 differences; ERC clean."
+		(exclude_from_sim no)
+		(at 22.86 40.64 0)
+		(size 58.42 149.86)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "ad6691dd-2a78-4ce5-872d-4ceee09011c1")
+	)
+	(text_box "- Reduced the low-voltage input to one +12 V (J2, 2-pin screw terminal); U32 isolated DC-DC makes +/-12 V on board.\n\n- Removed +5 V; LM4040 bias R50 now from +9 V (5.1k).\n\n- Changed U1 and U3 from OPA171 to OPA192: output accuracy passes without the zero calibration.\n\n- Added red LEDs: PWR (D8), HV LIVE (D7) and OUT EN (D6, in the PhotoMOS LED string; RLED1 now 750 Ohm).\n\n- Fixed the AQY214S symbol (its pins were hidden).\n\n- Resized passives: 0603 by default; 0805/1206/2512 only where voltage, power or precision needs it; one part per value.\n\n- Wired the top sheet; ERC clean; page numbers now follow the sheet titles.\n\n- Formatted after the FoC Motor Controller and AMULET: cover index, block frames with captions, this page. PCB text in JetBrains Mono; 3D model for every part."
+		(exclude_from_sim no)
+		(at 154.94 40.64 0)
+		(size 58.42 111.76)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.905 1.905)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "b7cc40d9-85b9-4cf3-b7fb-e28ac9f702bf")
+	)
+	(polyline
+		(pts
+			(xy 19.05 31.75) (xy 19.05 190.5)
+		)
+		(stroke
+			(width 0.635)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "12f5520a-f6b2-46f0-bf96-a6cc2adfdf74")
+	)
+	(polyline
+		(pts
+			(xy 151.13 31.75) (xy 151.13 152.4)
+		)
+		(stroke
+			(width 0.635)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "a4515485-037b-4c8e-8543-8e392422009f")
+	)
+	(polyline
+		(pts
+			(xy 217.17 31.75) (xy 217.17 152.4)
+		)
+		(stroke
+			(width 0.635)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "ce278843-83e3-4442-8b6c-22bd0ff258a2")
+	)
+	(polyline
+		(pts
+			(xy 85.09 31.75) (xy 85.09 152.4)
+		)
+		(stroke
+			(width 0.635)
+			(type default)
+			(color 0 0 0 1)
+		)
+		(uuid "dab330f1-5309-44bb-b51a-a3d184c4497e")
+	)
+)

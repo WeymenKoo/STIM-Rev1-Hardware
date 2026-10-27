@@ -1,0 +1,178 @@
+* s02_standins_ng.lib -- ngspice port of 1-safety-model/safety-chain-models.lib (P2)
+* Changes from the LTspice file, nothing else:
+*   PHOTOMOS : delay(x,T) -> lossless transmission line with TD = T (matched, x2 gain)
+*   TRIPLOGIC: idt() latch -> capacitor latch (1 mA set current, clamped 0..1 V, reset by Vrst)
+* Every model is still the S02 STAND-IN with its original [DS]/[ASSUME] tags.
+* ============================================================================
+* safety-chain-models.lib  --  stand-in models for the Rev 1 safety chain (S02)
+* UBC ELEC 491 JY063.  Use together with client-board-models.lib (S01 models).
+*
+* Tags:  [DS] = from the datasheet.   [ASSUME] = guess, check before trusting.
+* Every model here is a STAND-IN.  Swap in the vendor model when you have it,
+* and re-run the matching unit test (Step 9 / Step 10) after each swap.
+*
+* Parameters that MUST be defined by the step file (.param or .step):
+*   VthDN   DN2540 threshold (V_GS(off)), e.g. -2.5
+* ============================================================================
+
+* ----------------------------------------------------------------------------
+* OPA171B : behavioural OPA171 (input buffer U3)      pins  IN+ IN- VCC VEE OUT
+* [DS]  GBW 3 MHz, SR 1.5 V/us, Iq 475 uA, Vos 1.8 mV max (Vos param, default 0)
+*       Input CM range (V-)-0.1 V .. (V+)-2 V  (TI: works closer to V+ but with
+*       reduced performance -> modelled as a HARD limit = worst case)
+*       Output swing (V-)+0.03 V .. (V+)-0.35 V
+* [ASSUME] Aol 120 dB, single pole, Rout 50 ohm, output current not drawn from
+*       the rails (only Iq is), no noise, no PSRR.
+* ----------------------------------------------------------------------------
+.subckt OPA171B INP INN VCC VEE OUT params: GBW=3Meg SR=1.5Meg Aol=1Meg Vos=0
++ Vcmh=2 Vcml=0.1 Vsh=0.35 Vsl=0.03 Rout=50 Iq=475u
+Bcm  cm 0 V=min(max(V(INP),V(VEE)-Vcml),V(VCC)-Vcmh)
+Bgm  0 n2 I=min(max(1m*(V(cm)-V(INN)+Vos),-SR*1m/(6.2832*GBW)),SR*1m/(6.2832*GBW))
+R2   n2 0 {Aol/1m}
+C2   n2 0 {1m/(6.2832*GBW)}
+* anti-windup: hold the integrator node near the rails when saturated
+Bcl  n2 0 I=(max(V(n2)-V(VCC),0)+min(V(n2)-V(VEE),0))*10m
+Bo   o1 0 V=min(max(V(n2),V(VEE)+Vsl),V(VCC)-Vsh)
+Ro   o1 OUT {Rout}
+Iq1  VCC VEE {Iq}
+Rinp INP 0 1T
+Rinn INN 0 1T
+.ends OPA171B
+
+* ----------------------------------------------------------------------------
+* BZX84C6V2_JY : 6.2 V zener (input clamp D3/D4)
+* [DS] Vz 5.8-6.6 V @ 5 mA, Zzt <= 10 ohm, IR <= 3 uA @ 4 V
+* [ASSUME] Sharp knee; leakage is modelled OUTSIDE the diode by R_ZL so you
+*       can set it to the datasheet worst case (3 uA @ 4 V -> 1.33 Meg).
+*       Cjo is a guess (check datasheet "Cd vs VR").
+* Wrapped as a subckt (pins A K) because zener_ka/zener_ak are X-prefix symbols.
+* ----------------------------------------------------------------------------
+.subckt BZX84C6V2_JY A K
+D1 A K BZX84C6V2_JYD
+.model BZX84C6V2_JYD D(Is=1e-14 N=1 Rs=5 BV=6.15 IBV=1m NBV=1.2 Cjo=150p M=0.4 Vj=0.75)
+.ends BZX84C6V2_JY
+
+* ----------------------------------------------------------------------------
+* DN2540 : Microchip N-channel depletion MOSFET (limiter M1/M2)
+* [DS] BV_DSX 400 V, I_DSS >= 150 mA, V_GS(off) -1.5 .. -3.5 V (step VthDN),
+*      R_DS(on) 17 ohm typ / 25 max, Ciss ~200 pF, Coss ~12 pF, Crss ~1 pF
+* [ASSUME] Kp, Lambda, no sub-threshold slope.  Step 10 T10.1 checks I_DSS and
+*      the transfer curve against the datasheet: adjust Kp if they disagree.
+* ----------------------------------------------------------------------------
+.model DN2540 VDMOS(Vto={VthDN} Kp=0.3 Lambda=0.002 Rd=12 Rs=0.5 Rg=10
++ Cgs=180p Cgdmax=25p Cgdmin=1p A=1 Cjo=12p M=0.5 Is=1e-12 Rb=0.5 BV=420 Ibv=10u)
+
+* ----------------------------------------------------------------------------
+* SMBJ100_HALF : one half of a bidirectional SMBJ100CA TVS.
+* Use two in anti-series (D5/D6).  Pair: V_BR ~117 V @ 1 mA.
+* [DS] V_WM 100 V, V_BR 111-123 V @ 1 mA, V_C 162 V @ 3.7 A
+* [ASSUME] Cjo (pair ~50 pF at 0 V); leakage modelled outside by R_TVL
+*       (datasheet I_R @ V_WM -> R = 100 V / I_R).
+* Wrapped as a subckt (pins A K) because zener_ka/zener_ak are X-prefix symbols.
+* ----------------------------------------------------------------------------
+.subckt SMBJ100_HALF A K
+D1 A K SMBJ100_HALFD
+.model SMBJ100_HALFD D(Is=1e-12 N=1 Rs=6 BV=116.5 IBV=1m Cjo=100p M=0.33 Vj=0.75)
+.ends SMBJ100_HALF
+
+* ----------------------------------------------------------------------------
+* PHOTOMOS : behavioural normally-open PhotoMOS / SSR      pins  A K O1 O2 MON
+*   A,K   input LED (bottom of symbol).  O1,O2 bidirectional output (top, left/right).
+*   MON   SIMULATION ONLY: 0/1 "output is on" flag, for plots and .meas.
+* Spec targets from 03_Safety_limit_chain.md (part not chosen yet, T3.3):
+*   load voltage >= 400 V, Ron <= 30 ohm, leakage <= 1 uA, turn-off checked.
+* [ASSUME] Ift 1 mA (LED current to turn on), Ton 1 ms, Toff 0.2 ms
+*       (pure delays, then a 1 us edge), Roff 100 Meg (= 1 uA at 100 V,
+*       worst case), Cout 20 pF.  Replace with the chosen part's numbers.
+* ----------------------------------------------------------------------------
+.subckt PHOTOMOS A K O1 O2 MON params: Ronm=30 Roffm=100Meg Iftm=1m Tonm=1m Toffm=0.2m Coutm=20p
+Dled A a1 DLEDPM
+Vs   a1 K 0
+Bu   u0 0 V=u(I(Vs)-Iftm)
+Rt1  u0 t1i 1k
+T1   t1i 0 t1o 0 Z0=1k TD={Tonm}
+Rt1o t1o 0 1k
+Rt2  u0 t2i 1k
+T2   t2i 0 t2o 0 Z0=1k TD={Toffm}
+Rt2o t2o 0 1k
+Bc   c0 0 V=min(2*V(t1o),2*V(t2o))
+Rc   c0 ctl 1k
+Cc   ctl 0 1n
+Bsw  O1 O2 I=V(O1,O2)*min(max(V(ctl),0),1)/Ronm
+Roff O1 O2 {Roffm}
+Co   O1 O2 {Coutm}
+Bmon MON 0 V=u(V(ctl)-0.5)
+.model DLEDPM D(Is=1e-18 N=1.8 Rs=5 Cjo=20p)
+.ends PHOTOMOS
+
+* ============================================================================
+* BEHAVIOURAL CONTROL BLOCKS (drawn as boxes on S02).  Placeholders: none of
+* these is hardware yet.  T3.4 replaces TRIPLOGIC with real comparators/latch.
+* They read the GLOBAL parameters set on the schematic / in the S02_Txx .inc
+* file (tf, Ipk, fsig, Idc, Isq, fsq, Tset, Tramp, tr, Vfd, fDAC, DACclr, Ten,
+* fEN, Rsh, Rshr, Rovt, Rovb, Rf, Cf, Itrip, Imis, Vov, TRIPEN, ksrc, Trst).
+* ============================================================================
+
+* FAULTGEN : fault-injection clock.  OUT steps 0 -> 1 at t = tf.
+.subckt FAULTGEN OUT
+B1 OUT 0 V=u(time-tf)
+.ends FAULTGEN
+
+* CMDGEN : FPGA current command, 1 V = 1 mA.  Sine + square + ramped DC,
+* all starting at Tset, plus an optional "runaway" step of Vfd at the fault.
+.subckt CMDGEN FAULT OUT
+Vsin s1 0 SINE(0 {Ipk*1e3} {fsig} {Tset})
+Vsq  s2 0 PULSE({-Isq*1e3} {Isq*1e3} {Tset} {tr} {tr} {0.5/fsq-tr} {1/fsq})
+B1 OUT 0 V=(V(s1)+V(s2))*u(time-Tset)+Idc*1e3*min(max((time-Tset)/Tramp,0),1)+Vfd*fDAC*V(FAULT)
+.ends CMDGEN
+
+* DACGATE : the DAC.  Output follows CMD only while the output switch is on (EN)
+* and no fault is latched (FLT); DACclr=0 models a DAC that does NOT clear.
+.subckt DACGATE CMD EN FLT OUT
+B1 OUT 0 V=V(CMD)*((1-DACclr)+DACclr*V(EN)*(1-V(FLT)))
+.ends DACGATE
+
+* ENABLE : enable request from the controller (on at Ten, lost at the fault if
+* fEN=1) AND not-latched  ->  5 V LED drive for the PhotoMOS string.
+.subckt ENABLE FLT FAULT LEDDRV ENREQ
+B1 ENREQ 0 V=u(time-Ten)*(1-fEN*V(FAULT))
+B2 LEDDRV 0 V=5*V(ENREQ)*(1-V(FLT))
+.ends ENABLE
+
+* TRIPLOGIC : ideal sensing (1 V per mA), RC filters, three window comparators
+* and an SR latch (set by any trip, reset only by RST pulse at Trst).
+*   per-channel I  = [I(VCC+) - I(VCC-)] from the rail shunts
+*   return I       = V(RETS)/Rshr
+*   commanded I    = V(INPUT) (ksrc=0, after the clamp) or V(DAC) (ksrc=1)
+*   electrode V    = divider output scaled back up
+.subckt TRIPLOGIC VCCPS VCCP VCCN VCCNS RETS OVS INPUT DAC FLT TOC TMIS TOV ICHF MISF OVF
+Bich ich 0 V=1e3*(V(VCCPS,VCCP)-V(VCCN,VCCNS))/Rsh
+Bmis mis 0 V=1e3*V(RETS)/Rshr-(V(INPUT)+ksrc*(V(DAC)-V(INPUT)))
+Bova ova 0 V=V(OVS)*(Rovt+Rovb)/Rovb
+R1 ich ICHF {Rf}
+C1 ICHF 0 {Cf}
+R2 mis MISF {Rf}
+C2 MISF 0 {Cf}
+R3 ova OVF {Rf}
+C3 OVF 0 {Cf}
+B1 TOC 0 V=TRIPEN*u(abs(V(ICHF))-Itrip)
+B2 TMIS 0 V=TRIPEN*u(abs(V(MISF))-Imis)
+B3 TOV 0 V=TRIPEN*u(abs(V(OVF))-Vov)
+Vrst rst 0 PWL(0 0 {Trst} 0 {Trst+1u} 1 {Trst+20u} 1 {Trst+21u} 0)
+Blat 0 lat I=1m*u(max(max(V(TOC),V(TMIS)),V(TOV))-0.5)-10m*V(rst)
+Clat lat 0 1n
+Rlat lat 0 1G
+Dlh lat lh DLAT
+Vlh lh 0 1
+Dll 0 lat DLAT
+.model DLAT D(Is=1e-12 N=0.1 EG=0 XTI=0)
+B4 FLT 0 V=u(V(lat)-0.5)
+.ends TRIPLOGIC
+
+* FRES : fault-injection resistor between A and B.  R = Rnorm normally; when
+* en=1 it becomes Rfault once control pin F goes high.  F tied to 0 -> always Rnorm.
+.subckt FRES A B F params: Rnorm=1e15 Rfault=1e15 en=0
+B1 A B I=V(A,B)*((1-en*V(F))/Rnorm+en*V(F)/Rfault)
+* 1e15 ohm real resistor: gives LTspice's floating-node check a DC path (0.1 pA at 100 V)
+Rdc A B 1e15
+.ends FRES

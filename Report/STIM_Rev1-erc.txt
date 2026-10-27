@@ -1,0 +1,30 @@
+ERC report (2026-10-26T17:47:18, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+
+***** Sheet /[2] Doc - Revision History/
+
+***** Sheet /[3] Power - HV Input & Fusing/
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(196.85 mm, 80.01 mm): Symbol #PWR003 Pin 1 [Power input, Line]
+
+***** Sheet /[4] Power - Aux Input & +/-9 V LDOs/
+
+***** Sheet /[5] Interface - FPGA/
+
+***** Sheet /[6] Analog - Input Clamp & Buffer/
+
+***** Sheet /[7] Analog - Howland Current Pump/
+
+***** Sheet /[8] Output - Limiter & PhotoMOS/
+
+***** Sheet /[9] Sense - Feedback to ADC/
+
+ ** ERC messages: 1  Errors 1  Warnings 0
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - Assigned footprint doesn't match footprint filters
