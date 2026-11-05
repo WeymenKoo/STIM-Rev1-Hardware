@@ -1,0 +1,151 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "7c14932f-2e34-4ecb-ac99-994f2f04620f")
+	(paper "A4")
+	(title_block
+		(title "Interface - DAC Command")
+		(date "${RELEASE_DATE}")
+		(rev "${REVISION}")
+		(company "${COMPANY}")
+		(comment 1 "PRELIMINARY: not for fabrication")
+		(comment 2 "Edited in KiCad: do not regenerate")
+		(comment 3 "Netlist: expected_netlist_rev1min.csv")
+		(comment 4 "Not a safety sign-off; dummy loads")
+		(comment 9 "${REVIEWER}")
+	)
+	(lib_symbols)
+	(text_box "[11] Interface - DAC Command"
+		(exclude_from_sim no)
+		(at 17.08 16.51 0)
+		(size 262.84 10.16)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Times New Roman")
+				(size 7 7)
+				(thickness 1.4)
+				(bold yes)
+				(color 162 22 34 1)
+			)
+			(justify top)
+		)
+		(uuid "42e97f13-4291-489d-871f-97e8124e2add")
+	)
+	(text_box "DESIGN NOTE D1:\nPorts only: no parts yet. Serial DAC on the isolated side; its output is DAC_CMD into U3 on [6] (G = 5.02 with RG3 fitted, so a +/-1 V full scale; RG3 DNP for a +/-5 V DAC). Bipolar output vs. unipolar + offset, reference, LDAC/CLR handling and the isolated supply come with the part. DAC_CMD is driven from this sheet only; J3 [5] carries SPI, not the analog command."
+		(exclude_from_sim no)
+		(at 50.8 111.76 0)
+		(size 172.72 19)
+		(margins 1 1 1 1)
+		(stroke
+			(width 0.8)
+			(type solid)
+			(color 200 200 200 1)
+		)
+		(fill
+			(type color)
+			(color 255 255 255 1)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.27 1.27)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "89bacc0c-179a-4534-9c02-074d482204c0")
+	)
+	(wire
+		(pts
+			(xy 63.5 78.74) (xy 71.12 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0efd1f1b-2cb9-4099-ab5c-bb689b744468")
+	)
+	(wire
+		(pts
+			(xy 215.9 63.5) (xy 223.52 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b2c07396-de8a-483a-a5fe-1f13f9d2bd25")
+	)
+	(wire
+		(pts
+			(xy 63.5 71.12) (xy 71.12 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd490312-1b7d-4364-94b6-de2255c1ae3a")
+	)
+	(wire
+		(pts
+			(xy 63.5 63.5) (xy 71.12 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f26abbe9-9fc0-4a95-9a79-944548143d89")
+	)
+	(hierarchical_label "ISO_CS_DAC"
+		(shape input)
+		(at 63.5 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1dce306e-34fe-4c31-8495-b4028192462f")
+	)
+	(hierarchical_label "ISO_MOSI"
+		(shape input)
+		(at 63.5 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2d96c4f3-2be5-4848-9efe-04ecf60dede8")
+	)
+	(hierarchical_label "DAC_CMD"
+		(shape output)
+		(at 223.52 63.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3bd35bb7-4309-4356-abd2-191d1b20d7b0")
+	)
+	(hierarchical_label "ISO_SCLK"
+		(shape input)
+		(at 63.5 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "616c7f0d-d51b-4c44-84d8-83161a0fc482")
+	)
+)

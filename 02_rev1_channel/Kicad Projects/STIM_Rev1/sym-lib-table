@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "STIM_Rev1")(type "KiCad")(uri "${KIPRJMOD}/lib/lib_sym/STIM_Rev1.kicad_sym")(options "")(descr "STIM Rev 1 project symbols"))
+)

@@ -1,0 +1,32 @@
+Version 4
+SymbolType CELL
+LINE Normal 128 -64 128 64
+LINE Normal 128 64 0 0
+LINE Normal 0 0 128 -64
+LINE Normal 160 -32 128 -32
+LINE Normal 160 32 128 32
+LINE Normal 0 0 -32 0
+LINE Normal 64 -64 64 -32
+LINE Normal 64 64 64 32
+TEXT 112 -32 Right 2 +
+TEXT 112 32 Right 2 -
+WINDOW 0 64 136 Center 2
+WINDOW 3 64 164 Center 2
+SYMATTR Prefix X
+SYMATTR Value TLE2141
+SYMATTR Description TI TLE2141 op amp (model in JY063_STIM_models.lib)
+PIN 160 -32 NONE 0
+PINATTR PinName IN+
+PINATTR SpiceOrder 1
+PIN 160 32 NONE 0
+PINATTR PinName IN-
+PINATTR SpiceOrder 2
+PIN 64 -64 NONE 0
+PINATTR PinName VCC
+PINATTR SpiceOrder 3
+PIN 64 64 NONE 0
+PINATTR PinName VEE
+PINATTR SpiceOrder 4
+PIN -32 0 NONE 0
+PINATTR PinName OUT
+PINATTR SpiceOrder 5

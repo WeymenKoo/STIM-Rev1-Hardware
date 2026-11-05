@@ -1,0 +1,16 @@
+******* Discrete Diode Electrical Parameters ********
+** Product: BAS16
+** Package: SOT-23
+** Small Signal Diode
+** 1: anode 3: cathode 2: NC in package pin
+**-----------------------------------------------
+.MODEL BAS16 D
++ IS=1.0213e-10     RS=6.8230e-1     NR=2.0
++ N=1.5                  ISR=1.55e-8        CJO=1.15e-12
++ VJ=0.58               M=0.021              FC=0.5
++ BV=85                IBV=5.0e-6          TT=6.0835e-9
++ EG=1.11
+**----------------------------------------------
+** Creation: Jul.-15-2009   Rev: 0.0
+** Fairchild Semiconductor
+

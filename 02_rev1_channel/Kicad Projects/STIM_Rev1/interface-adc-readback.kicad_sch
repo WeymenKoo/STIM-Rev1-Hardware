@@ -1,0 +1,214 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "4b7c7ece-13b3-4546-8c13-c3483238e92d")
+	(paper "A4")
+	(title_block
+		(title "Interface - ADC Read-back")
+		(date "${RELEASE_DATE}")
+		(rev "${REVISION}")
+		(company "${COMPANY}")
+		(comment 1 "PRELIMINARY: not for fabrication")
+		(comment 2 "Edited in KiCad: do not regenerate")
+		(comment 3 "Netlist: expected_netlist_rev1min.csv")
+		(comment 4 "Not a safety sign-off; dummy loads")
+		(comment 9 "${REVIEWER}")
+	)
+	(lib_symbols)
+	(text_box "DESIGN NOTE D1:\nPorts only: no parts yet. Serial ADC on the isolated side reading the [9] outputs: I_RETURN_ADC = VMID + 0.2 V/mA and V_ELEC_ADC = VMID + V_elec/101, both sized for a 0-3.3 V input; VMID_REF (1.66 V) is available as the mid-scale reference. Channel count, resolution, sample rate, CONVST/DRDY lines and the isolated supply come with the part. Replaces the Red Pitaya slow inputs: the read-back leaves the board over SPI (ISO_MISO through [10]), J3 [5] carries no analog."
+		(exclude_from_sim no)
+		(at 50.8 134.62 0)
+		(size 172.72 19)
+		(margins 1 1 1 1)
+		(stroke
+			(width 0.8)
+			(type solid)
+			(color 200 200 200 1)
+		)
+		(fill
+			(type color)
+			(color 255 255 255 1)
+		)
+		(effects
+			(font
+				(face "Arial")
+				(size 1.27 1.27)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "76092d4d-4c72-48d8-b057-6cf3b6a68b76")
+	)
+	(text_box "[12] Interface - ADC Read-back"
+		(exclude_from_sim no)
+		(at 17.08 16.51 0)
+		(size 262.84 10.16)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Times New Roman")
+				(size 7 7)
+				(thickness 1.4)
+				(bold yes)
+				(color 162 22 34 1)
+			)
+			(justify top)
+		)
+		(uuid "9045e5fd-f8b1-45b8-ae3c-1c11b76ae31f")
+	)
+	(wire
+		(pts
+			(xy 63.5 93.98) (xy 71.12 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "357ace7a-5f79-49a4-9531-17881edea595")
+	)
+	(wire
+		(pts
+			(xy 63.5 78.74) (xy 71.12 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59c730af-cdec-406f-8a7a-4ab7f6d6feb9")
+	)
+	(wire
+		(pts
+			(xy 63.5 86.36) (xy 71.12 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c8ddb29-b354-4b40-87d0-6e086fcd7257")
+	)
+	(wire
+		(pts
+			(xy 63.5 63.5) (xy 71.12 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70417780-1461-4fa5-aa97-0379ff5e0903")
+	)
+	(wire
+		(pts
+			(xy 215.9 63.5) (xy 223.52 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd218fb5-41f8-4615-9646-f09798198b43")
+	)
+	(wire
+		(pts
+			(xy 63.5 71.12) (xy 71.12 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7c9cbcc-8110-415a-857a-e44f0459adb7")
+	)
+	(wire
+		(pts
+			(xy 63.5 101.6) (xy 71.12 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9beb034-ff56-4486-9f5d-947f776a0fd6")
+	)
+	(hierarchical_label "ISO_MOSI"
+		(shape input)
+		(at 63.5 93.98 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "17c63625-2369-4015-b3ea-d4be6e66266b")
+	)
+	(hierarchical_label "ISO_CS_ADC"
+		(shape input)
+		(at 63.5 101.6 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "25262262-3afb-4303-a828-7b135a0ed518")
+	)
+	(hierarchical_label "V_ELEC_ADC"
+		(shape input)
+		(at 63.5 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3ca08b01-9fd3-46ad-962d-3a69deb09577")
+	)
+	(hierarchical_label "VMID_REF"
+		(shape input)
+		(at 63.5 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "87341db0-9af4-43cb-ad7b-71f273b60228")
+	)
+	(hierarchical_label "ISO_MISO"
+		(shape output)
+		(at 223.52 63.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8d386205-5a8f-4622-b5ba-d8c35b3d0812")
+	)
+	(hierarchical_label "I_RETURN_ADC"
+		(shape input)
+		(at 63.5 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8efcefb4-f530-47ad-ab4c-6c2c71edc019")
+	)
+	(hierarchical_label "ISO_SCLK"
+		(shape input)
+		(at 63.5 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d45c33d8-9a46-48bb-bf4a-4dfdd795ef52")
+	)
+)

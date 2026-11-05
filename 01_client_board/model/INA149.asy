@@ -1,0 +1,44 @@
+Version 4
+SymbolType CELL
+LINE Normal 0 -96 0 96
+LINE Normal 0 96 192 0
+LINE Normal 192 0 0 -96
+LINE Normal -32 -48 0 -48
+LINE Normal -32 48 0 48
+LINE Normal 192 0 224 0
+LINE Normal 96 -96 96 -48
+LINE Normal 96 96 96 48
+LINE Normal 32 128 32 80
+LINE Normal 64 128 64 64
+TEXT 14 -48 Left 2 +
+TEXT 14 48 Left 2 -
+TEXT 36 72 Left 0 RA
+TEXT 66 56 Left 0 RB
+TEXT 100 -60 Left 0 V+
+TEXT 100 60 Left 0 V-
+WINDOW 0 -16 -80 Right 2
+WINDOW 3 -16 -108 Right 2
+SYMATTR Prefix X
+SYMATTR Value INA149
+SYMATTR Description TI INA149 high-CM difference amp (model in JY063_STIM_models.lib)
+PIN -32 -48 NONE 0
+PINATTR PinName +IN
+PINATTR SpiceOrder 1
+PIN -32 48 NONE 0
+PINATTR PinName -IN
+PINATTR SpiceOrder 2
+PIN 32 128 NONE 0
+PINATTR PinName REF_A
+PINATTR SpiceOrder 3
+PIN 64 128 NONE 0
+PINATTR PinName REF_B
+PINATTR SpiceOrder 4
+PIN 96 -96 NONE 0
+PINATTR PinName V+
+PINATTR SpiceOrder 5
+PIN 96 96 NONE 0
+PINATTR PinName V-
+PINATTR SpiceOrder 6
+PIN 224 0 NONE 0
+PINATTR PinName VOUT
+PINATTR SpiceOrder 7

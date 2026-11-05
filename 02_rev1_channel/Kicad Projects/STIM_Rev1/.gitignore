@@ -1,0 +1,16 @@
+# KiCad local history, backups, locks and per-user state
+.history/
+*-backups/
+_autosave-*
+*.lck
+~*.lck
+fp-info-cache
+*.kicad_prl
+*.bak
+*.bck
+*.kicad_sch-bak
+*.kicad_pcb-bak
+
+# OS / editor
+.DS_Store
+~$*.xlsx

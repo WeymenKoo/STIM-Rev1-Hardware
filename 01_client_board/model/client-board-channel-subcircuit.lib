@@ -1,0 +1,160 @@
+* =====================================================================
+* client-board-channel-subcircuit.lib  --  one STIM channel (client-board-model.asc) as a subcircuit,
+* plus the fixtures the T00..T13 test benches share.          2026-10-17
+*
+* Every test does:
+*   .include client-board-models.lib
+*   .include client-board-channel-subcircuit.lib
+*
+* With all parameters at their defaults, XSTIM is the S01 schematic
+* exactly (T00 checks this against the S01 .op result).
+* =====================================================================
+
+* ---------------------------------------------------------------------
+* STIM_CH  pins: INPUT (DAC / generator side of the board), LOAD (J1),
+*                VRP, VRN (HV rails before the fuses).  J2 = global 0.
+*
+* Error terms the G op-amp models leave out, injected here (0 = off):
+*   GE    INA149 gain error (fraction). Datasheet max 0.02 % -> 2e-4.
+*         Folded into R7: I = V(INPUT)*(1+GE)/R7, which is what it does.
+*   VOS2  INA149 output offset (V). Datasheet max 1.1 mV.
+*   KCM   INA149 error per volt on REF (=LOAD); 90 dB CMRR -> 31.6e-6.
+*         This is what sets the current source's output impedance.
+*   KPS   op-amp supply rejection, input-referred V/V on the floating
+*         rail (V(VP,VN) - 19.49 V). Not a datasheet number: tests that
+*         use it say what they assume.
+*   VOS1  TLE2141 offset (V). 0.9 mV max (non-A grade); 1.4 mV listed
+*         by one distributor: the tests use 1.4 mV to stay conservative.
+*   IB1   TLE2141 input bias current pulled out of LOAD (A). 1.5 uA max.
+*   R7    sense resistor value; tests pass mc() tolerance through it.
+*   TOLB  tolerance of the bias network resistors (R1..R6), mc() each.
+*   VZ3, VZ4  zener knee shift; 2.74 = BZX84C5V1 nominal model.
+*         +/-0.3 covers the 4.8..5.4 V spread of the part.
+*
+*   LGAC  AC amplitude of the loop-gain injection inside U2, between its
+*         internal amplifier and its output pin (T15). 0 = no effect.
+*   LGAC1 same for U1, between its output and REF (T15). 0 = no effect.
+*   LGI   AC current injected into U2's output node (T15, Tian method). 0 = none.
+*   GBWK, GBWK1  scale the gain-bandwidth of U2 / U1 (T18 loop-gain perturbation). 1 = datasheet.
+*
+* Fault switches (T11), 0 = healthy board:
+*   FQ2CE  1 = Q2 collector-emitter short
+*   FR3    1 = R3 open
+*   FC1    1 = C1 short
+*   FD1    1 = D1 open
+*   FU1    1 = U1 output stuck at its + rail (REF pulled to VP)
+* ---------------------------------------------------------------------
+.subckt STIM_CH INPUT LOAD VRP VRN params: R7=1k TOLB=0 GE=0 VOS2=0 KCM=0 KPS=0
++ VOS1=0 IB1=0 VZ3=2.74 VZ4=2.74 FQ2CE=0 FR3=0 FC1=0 FD1=0 FU1=0 LGAC=0 LGAC1=0 LGI=0
++ GBWK=1 GBWK1=1
+* rails: fuses and bulk caps on the board
+RF1 VRP VCCP 0.5
+RF2 VRN VCCN 0.5
+C2 VCCP 0 1u
+C3 VCCN 0 1u
+* input clamp D3/D4 (BZX84C5V1, back to back)
+XD3 dmid INPUT ZEN_BZX84 params: VZ={VZ3}
+XD4 dmid 0 ZEN_BZX84 params: VZ={VZ4}
+* bootstrapped floating supply
+Q2 VCCP B2 VP MJD340
+Q1 VCCN B1 VN MJD350
+R1 VCCP n1 {mc(44.2k,TOLB)}
+R2 n1 B2 {mc(44.2k,TOLB)}
+R3 B2 a1 {if(FR3>0.5,1e12,mc(10k,TOLB))}
+D1 a1 d1x BAS16
+RD1 d1x OUT {if(FD1>0.5,1e12,1u)}
+D2 OUT k2 BAS16
+R4 k2 B1 {mc(10k,TOLB)}
+R5 B1 n5 {mc(44.2k,TOLB)}
+R6 n5 VCCN {mc(44.2k,TOLB)}
+C1 B2 B1 100n
+RFC1 B2 B1 {if(FC1>0.5,0.1,1e12)}
+RFQ2 VCCP VP {if(FQ2CE>0.5,0.1,1e12)}
+* U2 INA149 with its error terms in series with +IN
+Berr u2p INPUT V={VOS2}+{KCM}*V(LOAD)+{KPS}*(V(VP,VN)-19.49)
+XU2 u2p 0 REF REF VP VN OUT INA149GL params: LGAC={LGAC} LGI={LGI} GBWK={GBWK}
+R7 OUT LOAD {R7/(1+GE)}
+* U1 TLE2141 buffers LOAD onto REF
+VOS1 u1p LOAD {VOS1}
+XU1 u1p REF VP VN u1o TLE2141GL params: GBWK={GBWK1}
+* loop-gain break for U1 (T15): 0 V DC; AC amplitude LGAC1
+Vlg1 REF u1o 0 AC {LGAC1}
+RFU1 REF VP {if(FU1>0.5,1,1e12)}
+IB1 LOAD 0 {IB1}
+.ends STIM_CH
+
+* ---------------------------------------------------------------------
+* INA149GL: INA149G (JY063_STIM_models.lib) with a loop-gain injection
+* source between the internal amplifier and the VOUT pin, upstream of the
+* 380k feedback resistor, so every feedback path of the current pump
+* passes through it. LGAC=0 makes it identical to INA149G.
+* ---------------------------------------------------------------------
+.subckt INA149GL +IN -IN REF_A REF_B V+ V- VOUT params: LGAC=0 LGI=0 GBWK=1
+R1   8 VOUT 380k
+R2   -IN 8 380k
+R3   +IN 9 380k
+RREFA 9 REF_A 19k
+RREFB REF_B 8 20k
+XOP  9 8 V+ V- oo OPAGEN params: GBW={10.5Meg*GBWK} SR=5Meg IQ=0.81m VSWH=1.5 VSWL=1.5 AOL=1Meg
+Vlg VOUT oo 0 AC {LGAC}
+* current injection for the double-injection (Tian) loop-gain method
+Ilg 0 VOUT 0 AC {LGI}
+.ends INA149GL
+
+* TLE2141GL: TLE2141G with its gain-bandwidth scaled by GBWK (1 = identical).
+.subckt TLE2141GL IN+ IN- VCC VEE OUT params: GBWK=1
+XOP IN+ IN- VCC VEE OUT OPAGEN params: GBW={5.9Meg*GBWK} SR=45Meg IQ=3.5m VSWH=1.0 VSWL=0.2 AOL=1Meg
+.ends TLE2141GL
+
+* ---------------------------------------------------------------------
+* ZEN_BZX84: Diodes Inc. DI_BZX84C5V1 (in JY063_STIM_models.lib) with the
+* internal knee voltage as a parameter.  VZ=2.74 is identical to it.
+* ---------------------------------------------------------------------
+.subckt ZEN_BZX84 1 2 params: VZ=2.74
+D1 1 2 DF84
+DZ 3 1 DR84
+VZ 2 3 {VZ}
+.model DF84 D ( IS=28.3p RS=33.9 N=1.10 CJO=66.2p VJ=0.750 M=0.330 TT=50.1n )
+.model DR84 D ( IS=5.65f RS=44.5 N=3.00 )
+.ends ZEN_BZX84
+
+* ---------------------------------------------------------------------
+* HEAD: dummy head between J1 (A) and J2 (B).
+*   RS   tissue / phantom resistance
+*   RE   each electrode-skin interface resistance (2 electrodes)
+*   CE   each electrode-skin interface capacitance
+*   CC   lead / cable capacitance across the output
+* RE=1m CE=1p gives a pure resistor RS (the bench "electronic load").
+* The electrode values are ASSUMPTIONS until the dummy head is measured;
+* the tests sweep them over a wide range for that reason.
+* ---------------------------------------------------------------------
+.subckt HEAD A B params: RS=1k RE=1m CE=1p CC=1p
+RS A e1 {RS}
+RE1 e1 e2 {RE}
+CE1 e1 e2 {CE}
+RE2 e2 B {RE}
+CE2 e2 B {CE}
+CC A B {CC}
+.ends HEAD
+
+* ---------------------------------------------------------------------
+* STIM_RAIL: behavioural rail load of one channel, for the HV converter
+* simulation (power team).  Pins: VRP, VRN (rails), CMD (command voltage,
+* 1 V = 1 mA, referred to 0).  RL = dummy-head load.  Checked against the
+* full channel in T12.  Valid while the channel is inside compliance.
+*   It, Ib : bias-string currents into / out of OUT (R1-R3, D1 / D2, R4-R6)
+*   IQ     : U1 + U2 quiescent current, carried from VP to VN by Q2 / Q1
+*   Iu     : U2 output current = load current - It + Ib, plus the INA149
+*            internal 380k from its -IN (ground) to the ~0.95*V(LOAD) node
+* ---------------------------------------------------------------------
+.subckt STIM_RAIL VRP VRN CMD params: RL=10k R7=1k IQ=4.31m
+.param RB=98.4k
+Bo vo 0 V=V(CMD)/1k*({RL}+{R7})
+Bt it 0 V=max((V(VRP)-V(vo)-0.6)/{RB},0)
+Bb ib 0 V=max((V(vo)-V(VRN)-0.6)/{RB},0)
+Bu iu 0 V=V(CMD)/1k-V(it)+V(ib)+0.952*V(CMD)/1k*{RL}/380k
+BP VRP 0 I=V(it)+{IQ}*min(max(V(VRP,VRN)/20,0),1)+max(V(iu),0)
+BN 0 VRN I=V(ib)+{IQ}*min(max(V(VRP,VRN)/20,0),1)+max(-V(iu),0)
+C2 VRP 0 1u
+C3 VRN 0 1u
+.ends STIM_RAIL
