@@ -147,7 +147,11 @@ class DG1022:
     def __init__(self, resource):
         rm = _rm(); self.v = rm.open_resource(resource, timeout=5000)
         self.v.read_termination = "\n"; self.v.write_termination = "\n"
-        self.idn = self.v.query("*IDN?").strip(); time.sleep(self.DELAY)
+        self.idn = "DG1022 (no *IDN? reply)"
+        for _ in range(3):   # query() times out on this unit over NI-VISA: write, wait, read (bench 2026-11-06)
+            try: self.v.write("*IDN?"); time.sleep(0.4); self.idn = self.v.read().strip(); break
+            except Exception: time.sleep(0.5)
+        time.sleep(self.DELAY)
         self.w("OUTP OFF"); self.w("OUTP:LOAD INF"); self.w("VOLT:UNIT VPP")
 
     def w(self, cmd):
@@ -157,11 +161,26 @@ class DG1022:
                 print(f"  gen retry {attempt+1} on {cmd!r}: {e}"); time.sleep(0.5)
         raise RuntimeError("generator not responding")
 
-    def sine(self, f, vpk, offset=0.0): self.w(f"APPL:SIN {f},{2*vpk:.4f},{offset:.4f}")
-    def square(self, f, lo, hi): self.w(f"APPL:SQU {f},{(hi-lo):.4f},{(hi+lo)/2:.4f}")
-    def dc(self, volts): self.w(f"APPL:DC DEF,DEF,{volts:.4f}")
-    def on(self): self.w("OUTP ON")
-    def off(self): self.w("OUTP OFF")
+    def q(self, cmd):
+        """query() times out on this unit: write, wait, read. Returns '' on no reply."""
+        try: self.v.write(cmd); time.sleep(0.4); return self.v.read().strip()
+        except Exception: return ""
+
+    def _ensure(self):
+        """Bench 2026-11-06: an 'OUTP ON' was silently dropped once (APPL settings arrived, output stayed OFF,
+        whole preflight sweep read 0 V). Read back and re-send until the output state is what we asked for."""
+        want = "ON" if self._on else "OFF"
+        for _ in range(3):
+            if self.q("OUTP?").upper().startswith(want): return
+            print(f"  gen output not {want}: re-sending"); self.w(f"OUTP {want}")
+        raise RuntimeError(f"generator output will not go {want}")
+
+    _on = False
+    def sine(self, f, vpk, offset=0.0): self.w(f"APPL:SIN {f},{2*vpk:.4f},{offset:.4f}"); self._on and self._ensure()
+    def square(self, f, lo, hi): self.w(f"APPL:SQU {f},{(hi-lo):.4f},{(hi+lo)/2:.4f}"); self._on and self._ensure()
+    def dc(self, volts): self.w(f"APPL:DC DEF,DEF,{volts:.4f}"); self._on and self._ensure()
+    def on(self): self._on = True; self.w("OUTP ON"); self._ensure()
+    def off(self): self._on = False; self.w("OUTP OFF"); self._ensure()
     def zero(self): self.dc(0.0)
     def describe(self): return self.idn
 

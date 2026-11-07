@@ -1,0 +1,52 @@
+time,test,quantity,bench [B],expected [L],tol,pass
+2026-11-06T18:45:19,B0,"±5 V  rail current + (mA, Fluke 45)",32.4,4–5 (ICs alive),> 15 → OFF,False
+2026-11-06T18:45:19,B0,±5 V  V+ (Q2 tab) mean (V),3.919,[H] ≈ +5,,
+2026-11-06T18:45:19,B0,±5 V  V- (Q1 pin 3) mean (V),2.659,[H] ≈ -5,,
+2026-11-06T18:45:19,B0,±5 V  V+ - V- across ICs (V),1.259,≤ 36 (INA149),,True
+2026-11-06T18:45:19,B0,±5 V  ripple pk-pk V+ / V- (V),0.052 / 0.034,,,
+2026-11-06T18:45:19,B0,±5 V  verdict,"NEITHER: send me this, stop here  note: limit 200 mA accidentally; thermal test run",,,
+2026-11-06T19:09:02,B0,"±5 V run2  rail current + (mA, Fluke 45 at ~10 s)",32.58,4–5 (ICs alive),> 15 → OFF,False
+2026-11-06T19:09:02,B0,"±5 V run2  V+ (Q2 tab), 17 captures (V)",+4.485 … +4.490,[H] ≈ +5,,
+2026-11-06T19:09:02,B0,"±5 V run2  V- (Q1 pin 3), 17 captures (V)",+3.047 … +3.053,[H] ≈ -5 if ICs alive,,
+2026-11-06T19:09:02,B0,±5 V run2  V+ - V- across ICs (V),1.437,short: 44 Ω unpowered,,
+2026-11-06T19:09:02,B0,±5 V run2  short resistance (V+-V-)/I+ (Ω),44.1,44 (unpowered DMM),±10 %,True
+2026-11-06T19:09:02,B0,±5 V run2  startup single shot end values (V),V+ +4.48 / V- +3.04,= steady state,,
+2026-11-06T19:09:02,B0,±5 V run1  note,"run1 (3.919 / 2.659 V) decoded with the byte-order guess, no raw kept: superseded by run2 (raw-verified)",,,
+2026-11-06T19:45:28,B0,"±5 V B0.3  Xantrex I, both outputs (A)",0.04 / 0.04,= one series loop,,
+2026-11-06T19:45:28,B0,±5 V B0.3  VCC+ after F1 = Q2 pin 3 (V),4.97,,,
+2026-11-06T19:45:28,B0,±5 V B0.3  Q2 tab = V+ / U1 p7 / U2 p7 (V),4.908 / 4.907 / 4.907,equal: V+ path intact,,
+2026-11-06T19:45:28,B0,±5 V B0.3  Q2 base R2/R3 (V),4.961,[H] ≈ VCC+ - 0.7 if Q2 conducting,,
+2026-11-06T19:45:28,B0,±5 V B0.3  Q2 V_EB / V_EC (mV),9 / 63,V_EB ≪ 0.6 V at 40 mA → Q2 shorted E-C [H],,
+2026-11-06T19:45:28,B0,±5 V B0.3  Q1 pin 3 = V- / U1 p4 / U2 p4 (V),3.1332 / 3.1345 / 3.1355,V- path intact,,
+2026-11-06T19:45:28,B0,±5 V B0.3  Q1 base R4/R5 / Q1 tab = VCC- (V),-4.288 / -4.950,"B-C 0.66 V fwd, E-B 7.42 V breakdown ✓ [H]",,
+2026-11-06T19:45:28,B0,±5 V B0.3  KVL: Q2 + short + Q1 (V),0.063 + 1.773 + 8.083 = 9.919,rails 9.920 ✓,,
+2026-11-06T19:45:28,B0,±5 V B0.3  U1 p7 - U2 p7 (mV),0,,,
+2026-11-06T19:45:28,B0,±5 V B0.3  U2 p4 - U1 p4 (mV),-0.04,"+ → U2, − → U1",,
+2026-11-06T19:45:28,B0,±5 V B0.3  U1 p4 - Q1 p3 / U2 p4 - Q1 p3 (mV),0.14 / 0.09,U1 p4 highest → U1 sources the short (moderate confidence),,
+2026-11-06T19:45:28,B0,B0 verdict,board dead as built: IC supply short 44 Ω (U1 likely) + Q2 shorted E-C + Q1 E-B stressed + Q1/Q2 design errors,,,
+2026-11-06T19:54:19,B0,unpowered Q2 E (pad 3) - C (tab) on client board (Ω),1.74,≈1.6 from powered 63 mV/40 mA,,True
+2026-11-06T19:54:19,B0,"unpowered spare MJD350 E-C, out of circuit (Ω)",43.5 M,healthy reference,,
+2026-11-06T19:54:19,B0,unpowered Q1 E-C on client board,MΩ range,not shorted,,
+2026-11-06T19:54:19,B0,verdict update,Q2 shorted E-C CONFIRMED (1.74 Ω vs 43.5 MΩ spare),,,
+2026-11-06T20:03:20,B0,±5.75 V heat_noRL  V+ first / last (V),+4.968 / +4.431,,,
+2026-11-06T20:03:20,B0,±5.75 V heat_noRL  V- first / last (V),+2.734 / +2.732,,,
+2026-11-06T20:03:20,B0,±5.75 V heat_noRL  V+ - V- first / last (V),2.234 / 1.700,short: ~1.26 (run 1),,
+2026-11-06T20:03:31,B0,±5.75 V heat_noRL  setup,"RL removed; Xantrex set 5.75 V both (per user), 100 mA limit; on ≈ 17 s",,,
+2026-11-06T20:03:31,B0,"±5.75 V heat_noRL  loop current (mA, Fluke 45)",51.63,[H] 51 from V+-V- / 44 Ω,,
+2026-11-06T20:03:31,B0,"±5.75 V heat_noRL  V+ / V- steady, 13 captures (V)",+4.970 / +2.732,[H] for true ±5.75: +5.7 / +2.4,,
+2026-11-06T20:03:31,B0,±5.75 V heat_noRL  short (V+-V-)/I (Ω),43.3,44,±10 %,True
+2026-11-06T20:04:33,B0,±5.75 V heat2_noRL  V+ first / last (V),+4.891 / +4.279,,,
+2026-11-06T20:04:33,B0,±5.75 V heat2_noRL  V- first / last (V),+2.343 / +2.386,,,
+2026-11-06T20:04:33,B0,±5.75 V heat2_noRL  V+ - V- first / last (V),2.548 / 1.893,short: ~1.26 (run 1),,
+2026-11-06T20:06:00,B0,"±5.75 V heat2_noRL  loop current (mA, Fluke 45)",57.79,[H] 58 from V+-V- / 44 Ω,,
+2026-11-06T20:06:00,B0,±5.75 V heat2_noRL  short (V+-V-)/I (Ω),42.9,44,±10 %,True
+2026-11-06T20:06:00,B0,±5.75 V heat2_noRL  power in short I²R (W),0.143,,,
+2026-11-06T20:06:00,B0,±5.75 V heat2_noRL  touch test U1 / U2 after ≈ 41 s,no warmth on either,[ASSUME] +14–23 °C expected at 0.14 W: weak test,,
+2026-11-06T20:06:00,B0,±5.75 V heat runs  rail check,V+ ≈ 4.89 → VCC+ ≈ 5.0 V; V- 2.41 → VCC- ≈ -5.8 V: + output not raised to 5.75,,,
+2026-11-06T20:09:26,B0,±6 V heat3_noRL  V+ first / last (V),+4.966 / +5.001,,,
+2026-11-06T20:09:26,B0,±6 V heat3_noRL  V- first / last (V),+2.093 / +2.175,,,
+2026-11-06T20:09:26,B0,±6 V heat3_noRL  V+ - V- first / last (V),2.872 / 2.826,short: ~1.26 (run 1),,
+2026-11-06T20:10:12,B0,"±6 V heat3_noRL  loop current start / end (mA, Fluke 45)",67.0 / 64.7,[H] 2.877 V / 43 Ω = 67,,
+2026-11-06T20:10:12,B0,±6 V heat3_noRL  V+ / V- start → end (V),+4.966 / +2.093 → +5.001 / +2.175,V- up 80 mV: Q1 E-B warming,,
+2026-11-06T20:10:12,B0,±6 V heat3_noRL  short start / end (Ω),43.0 / 43.6,44,±10 %,True
+2026-11-06T20:10:12,B0,±6 V heat3_noRL  power in short (W),0.183,,,

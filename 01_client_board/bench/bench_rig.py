@@ -40,7 +40,8 @@ EXP = {
 }
 PROBE = {  # where to clip, from Client_Prototype_HowlandPump.pdf (STIM.SchDoc 2026-10-16)
   "VCC+": "F1 (board side) or J3 pin 1", "VCC-": "F2 (board side) or J3 pin 3", "GND": "J3 pin 2 / J2 / J5 GND",
-  "VP (V+)": "C2 lead that is NOT GND (= Q2 emitter, U2 pin 7, U1 pin 7)", "VN (V-)": "C3 lead that is NOT GND (= Q1 emitter, U2 pin 4, U1 pin 4)",
+  # bench 2026-11-06: on the board C2/C3 sit on fused VCC+/VCC− (STIM.SchDoc), NOT on V+/V−. Probe the IC pins.
+  "VP (V+)": "U2 pin 7 (= U1 pin 7 = Q2 tab)", "VN (V-)": "U2 pin 4 (= U1 pin 4 = Q1 pin 3)",
   "OUT": "D1/D2 junction = top of R7 (U2 pin 6)", "LOAD": "J1 = bottom of R7 (U1 pin 3)", "REF": "U1 pin 6 (also U2 pins 1, 5)",
   "INPUT": "J4 BNC centre (D3/D4 junction, U2 pin 3)", "Q2 base": "R2/R3 junction", "Q1 base": "R4/R5 junction",
 }
@@ -48,7 +49,7 @@ PROBE = {  # where to clip, from Client_Prototype_HowlandPump.pdf (STIM.SchDoc 2
 LOG = os.path.join(HERE, "session_log.csv")
 def log(test, qty, bench, expected="", tol="", ok=""):
     new = not os.path.exists(LOG)
-    with open(LOG, "a", newline="") as f:
+    with open(LOG, "a", newline="", encoding="utf-8") as f:
         w = csv.writer(f); new and w.writerow(["time", "test", "quantity", "bench [B]", "expected [L]", "tol", "pass"])
         w.writerow([datetime.datetime.now().isoformat(timespec="seconds"), test, qty, bench, expected, tol, ok])
     flag = "" if ok == "" else ("  PASS" if ok else "  FAIL")
