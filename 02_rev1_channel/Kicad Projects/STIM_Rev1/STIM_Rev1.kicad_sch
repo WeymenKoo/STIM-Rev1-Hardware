@@ -16,6 +16,284 @@
 		(comment 9 "${REVIEWER}")
 	)
 	(lib_symbols
+	(symbol "STIM_Rev1:+5V"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 0 3.556 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\": ADC AVDD rail from U46 [13]"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "+5V_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+5V_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "STIM_Rev1:+3V3"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#PWR"
+			(at 0 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 0 3.556 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\": board-side logic rail from U47 [13]"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "global power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "+3V3_0_1"
+			(polyline
+				(pts
+					(xy -0.762 1.27) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0.762 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "+3V3_1_1"
+			(pin power_in line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 		(symbol "STIM_Rev1:MountingHole"
 			(pin_names
 				(offset 1.016)
@@ -2355,7 +2633,7 @@
 			)
 		)
 	)
-	(text "POWER: rails leave [3] and [4] as ports; the global power symbols live here. GND is global on every sheet."
+	(text "POWER: rails leave [3], [4] and [13] as ports; the global power symbols live here. GND is global on every sheet."
 		(exclude_from_sim no)
 		(at 38.1 62.23 0)
 		(effects
@@ -2368,7 +2646,7 @@
 	)
 	(sheet
 		(at 38.1 101.6)
-		(size 45.72 30.48)
+		(size 45.72 33.02)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -2483,6 +2761,16 @@
 				)
 				(justify right)
 			)
+		)
+		(pin "SPI_CS_ADC2" output
+			(at 83.82 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "967d42ff-ba8b-4f47-879b-d099b53fd333")
 		)
 		(instances
 			(project "STIM_Rev1"
@@ -2666,7 +2954,7 @@
 	)
 	(sheet
 		(at 99.06 101.6)
-		(size 63.5 30.48)
+		(size 63.5 33.02)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -2821,6 +3109,26 @@
 				)
 				(justify right)
 			)
+		)
+		(pin "SPI_CS_ADC2" input
+			(at 99.06 129.54 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "85e08f3c-56df-4435-9093-021c4bcd9d91")
+		)
+		(pin "ISO_CS_ADC2" output
+			(at 162.56 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "4b335b1b-45b7-47ec-8e5b-2a12dec3414d")
 		)
 		(instances
 			(project "STIM_Rev1"
@@ -3027,6 +3335,16 @@
 				)
 				(justify right)
 			)
+		)
+		(pin "ISO_MISO" output
+			(at 233.68 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "dcb296a0-6ed4-4b8e-878f-ed09e6c71b97")
 		)
 		(instances
 			(project "STIM_Rev1"
@@ -3731,16 +4049,6 @@
 				(justify left)
 			)
 		)
-		(pin "VMID_REF" input
-			(at 309.88 157.48 180)
-			(uuid "49cd54cb-ee54-48ec-b77a-7d1cec38355a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "ISO_SCLK" input
 			(at 309.88 161.29 180)
 			(uuid "3bc85147-0680-4f9b-8c21-75ce7b4d2206")
@@ -3770,6 +4078,16 @@
 				)
 				(justify left)
 			)
+		)
+		(pin "ISO_CS_ADC2" input
+			(at 309.88 172.72 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "60ee6a7c-08df-4ee3-86cf-539f24f110ff")
 		)
 		(pin "ISO_MISO" output
 			(at 365.76 149.86 0)
@@ -3828,26 +4146,6 @@
 			(justify left bottom)
 		)
 		(uuid "9221bc57-03f4-44d3-aa59-27caafd53743")
-	)
-	(wire
-		(pts
-			(xy 284.48 157.48) (xy 309.88 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "af66d61e-e9f4-4082-a3a3-ce09c84b2c18")
-	)
-	(label "VMID_REF"
-		(at 285.75 157.48 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f71b3512-a853-48c6-bd41-dc091b65386d")
 	)
 	(wire
 		(pts
@@ -3929,7 +4227,7 @@
 		)
 		(uuid "d8acfe8d-a9ec-45e8-a106-012e595d8bdd")
 	)
-	(text "SIGNAL: FPGA [5] -> isolator [10] -> DAC [11] -> clamp [6] -> pump [7] -> limiter [8] -> sense [9] -> ADC [12] -> back over ISO_MISO. Same-name labels join nets."
+	(text "SIGNAL: FPGA [5] -> isolator [10] -> DAC [11] -> clamp [6] -> pump [7] -> limiter [8] -> sense [9] -> ADCs [12] -> back over ISO_MISO; VMID_REF is read once on TP29. Same-name labels join nets."
 		(exclude_from_sim no)
 		(at 38.1 97.79 0)
 		(effects
@@ -3939,6 +4237,330 @@
 			(justify left bottom)
 		)
 		(uuid "5ace1739-c9b2-489d-9eb5-f6a385d440db")
+	)
+	(no_connect
+		(at 284.48 157.48)
+		(uuid "a017c008-6e8a-4c52-a7ad-29aa82501dca")
+	)
+	(wire
+		(pts
+			(xy 83.82 129.54) (xy 99.06 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a961c621-ceff-49b4-9041-b444cab639f4")
+	)
+	(label "SPI_CS_ADC2"
+		(at 85.09 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3ba0d0c6-2d34-49a3-a012-51ac25d48770")
+	)
+	(wire
+		(pts
+			(xy 162.56 129.54) (xy 173.99 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75eeb591-5270-4e6a-aafa-e9ff408502bc")
+	)
+	(label "ISO_CS_ADC2"
+		(at 173.99 129.54 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5b59e35b-1f76-4c5a-8937-86abeab7cfaa")
+	)
+	(wire
+		(pts
+			(xy 309.88 172.72) (xy 298.45 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84a2b23a-4c7a-4d48-9dbe-7f9d9e5c148e")
+	)
+	(label "ISO_CS_ADC2"
+		(at 298.45 172.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "07dfaba2-b3fc-49a4-b857-7f82a9192308")
+	)
+	(wire
+		(pts
+			(xy 233.68 110.49) (xy 243.84 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6afc0c6-c14a-439a-8914-c77c850d188c")
+	)
+	(label "ISO_MISO"
+		(at 243.84 110.49 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c542660c-07ef-4ba2-9f2d-e7a7673cbd3d")
+	)
+	(wire
+		(pts
+			(xy 271.78 71.12) (xy 279.4 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73030a1e-ded1-42ef-bcb5-79f3cf31616a")
+	)
+	(symbol
+		(lib_id "STIM_Rev1:+5V")
+		(at 279.4 71.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3eee2d8a-0f5f-4a2f-8b0a-80bca61a8327")
+		(property "Reference" "#PWR372"
+			(at 279.4 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 279.4 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 279.4 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 279.4 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\": ADC AVDD rail from U46 [13]"
+			(at 279.4 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e9d4dc6c-520e-46dd-82ba-305cd87f9949")
+		)
+		(instances
+			(project "STIM_Rev1"
+				(path "/801725e5-e50b-4629-8dff-f10f88598334"
+					(reference "#PWR372")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 271.78 74.93) (xy 289.56 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "250ed9e1-0587-499b-acf9-a8143c451bd3")
+	)
+	(symbol
+		(lib_id "STIM_Rev1:+3V3")
+		(at 289.56 74.93 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4c7c7b4f-08b0-486a-886b-c3afa442e8f2")
+		(property "Reference" "#PWR373"
+			(at 289.56 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 289.56 69.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 289.56 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 289.56 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\": board-side logic rail from U47 [13]"
+			(at 289.56 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2e550b7c-ca02-47b7-a207-b9036e56d044")
+		)
+		(instances
+			(project "STIM_Rev1"
+				(path "/801725e5-e50b-4629-8dff-f10f88598334"
+					(reference "#PWR373")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 220.98 66.04)
+		(size 50.8 15.24)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1)
+		)
+		(uuid "5d3b7a1e-2f44-4c0e-9a61-13c0f0e3a0d1")
+		(property "Sheetname" "[13] Power - Converter Rails"
+			(at 220.98 65.278 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power-converter-rails.kicad_sch"
+			(at 220.98 81.864 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "+5V" passive
+			(at 271.78 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "22e74e11-5497-4049-9eef-1d4ce5f5efcc")
+		)
+		(pin "+3V3" passive
+			(at 271.78 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "9a736331-d7c9-4125-a468-58e0c9754914")
+		)
+		(instances
+			(project "STIM_Rev1"
+				(path "/801725e5-e50b-4629-8dff-f10f88598334"
+					(page "13")
+				)
+			)
+		)
 	)
 	(sheet_instances
 		(path "/"

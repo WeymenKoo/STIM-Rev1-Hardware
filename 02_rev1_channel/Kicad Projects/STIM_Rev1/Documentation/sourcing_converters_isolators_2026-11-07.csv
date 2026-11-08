@@ -1,0 +1,18 @@
+ref,part,function,package,lcsc,lcsc_stock,lcsc_usd_1,lcsc_smt,digikey_ca_stock,digikey_ca_cad_1,source_date,note
+U40,AD5761RBRUZ-RL7,16-bit DAC +/-5 V,TSSOP-16,C515877,592,13.03,Extended,751,25.57,2026-11-07,tube AD5761RBRUZ = C404015 (20 pcs) / DigiKey 410 pcs
+U41;U42,ADS8689IPWR,16-bit SAR ADC (x2: I and V),TSSOP-16,C135986,997,5.48,Extended,1889,11.49,2026-11-07,
+removed,CD74HC4052PWR,dual 4:1 analog mux (2026-11-07 draft),TSSOP-16,C402158,3675,0.31,Extended,n/a,0.95,2026-11-07,withdrawn 2026-11-08: two ADCs instead of one ADC + mux
+U44,ISO7741DWR,3/1 digital isolator default HIGH,SOIC-16 DW,C571196,9767,1.52,Extended,3906,5.64,2026-11-08,CS_DAC / CS_ADC / GPIO forward and MISO back (chosen 2026-11-08)
+U43,ISO7741FDWR,3/1 digital isolator default LOW,SOIC-16 DW,C485810,675,1.77,Extended,0 (backorder 2027-04),5.64,2026-11-08,ENABLE / SCLK / MOSI forward and FAULT_N back; LCSC / JLCPCB only today
+alt,ISO7742DWR,2/2 digital isolator default HIGH,SOIC-16 DW,C529288,1263,1.71,Extended,1439,5.97,2026-11-07,2026-11-07 draft used two of these; same footprint
+alt,ISO7742FDWR,2/2 digital isolator default LOW,SOIC-16 DW,C2862403,207,2.42,Extended,3352,5.64,2026-11-07,2026-11-07 draft used one; DigiKey-stocked fallback for the F role (2 forward channels only)
+alt,ISO7762DWR,4/2 isolator (no output enable),SOIC-16 DW,C5216456,85,3.41,Extended,6281,6.73,2026-11-07,rejected: no EN pin so J5 bypass would need the part removed
+alt,ISO7762FDWR,4/2 isolator default LOW,SOIC-16 DW,C5216457,301,4.50,Extended,0 (backorder Dec 2026),6.73,2026-11-07,rejected: DigiKey out of stock
+alt,ISO7761FDWR,5/1 isolator default LOW,SOIC-16 DW,C5216451,533,3.35,Extended,not checked,,2026-11-07,rejected: no EN pin and no spare channel
+alt,ISO7842FDWWR,6/2 isolator default LOW with EN,SOIC-16 DWW 14 mm,C5216516,373,4.90,Extended,451,12.89,2026-11-07,viable single-chip option: custom DWW footprint and no forward spare
+alt,ISO7842DWR,6/2 isolator default HIGH,SOIC-16 DW,C575550,31,4.53,Extended,764 (DWWR),20.01,2026-11-07,rejected: default high on ENABLE and low LCSC stock
+U46;U47,TPS7A4901DGNR,36 V 150 mA LDO (as U30),HVSSOP-8,open,,,Extended,not checked,,2026-11-07,same open LCSC question as U30/U31
+R91,32.4k 1% 0603,+5V FB top,0603,TBD,,,Basic,,,2026-11-07,UNI-ROYAL 0603WAF3242T5E assumed
+R93,17.8k 1% 0603,+3V3 FB top,0603,TBD,,,Basic,,,2026-11-07,UNI-ROYAL 0603WAF1782T5E assumed
+C115;C116;C118,1u X5R 50V 0603,ADC decoupling,0603,TBD,,,Basic,,,2026-11-07,Samsung CL10A105KB8NNNC assumed
+J5,A2541WV-2x8P [ASSUME],board-side bypass header (same as J3),2x8 2.54 mm IDC,open,,,Extended,,,2026-11-07,LCSC number still to pick (C225520 was the 2x5)

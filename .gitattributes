@@ -1,0 +1,9 @@
+# Keep text files LF in the repo: the bench CSVs and markdown came back CRLF after an edit on 2026-11-07 (38k-line no-op diff)
+*.csv text eol=lf
+*.md text eol=lf
+*.kicad_sch text eol=lf
+*.kicad_pro text eol=lf
+*.kicad_sym text eol=lf
+*.kicad_mod text eol=lf
+*.asc text eol=lf
+*.py text eol=lf

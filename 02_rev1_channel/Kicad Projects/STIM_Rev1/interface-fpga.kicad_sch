@@ -746,7 +746,7 @@
 		)
 		(uuid "a0e55117-c5eb-416f-b879-3488f1c5cd9f")
 	)
-	(text_box "DESIGN NOTE D1:\nJ3 2x8 IDC: 1 +3V3_FPGA, 3 SPI_SCLK, 5 SPI_MOSI, 7 SPI_MISO, 9 SPI_CS_DAC, 11 SPI_CS_ADC, 13 ENABLE (3.3 V; low or open = switches open), 15 spare GPIO for the safety logic (NC now); even pins GND_FPGA. All nets here are FPGA-side; they cross to the board only through [10]. [ASSUME] +3V3_FPGA from the FPGA powers isolator side 1 (ICD_J3 said no power on J3: decide and update the ICD). Analog DAC_CMD / read-back pins are gone: [11] and [12] do that."
+	(text_box "DESIGN NOTE D1:\nJ3 2x8 IDC: 1 +3V3_FPGA, 3 SPI_SCLK, 5 SPI_MOSI, 7 SPI_MISO, 9 SPI_CS_DAC, 11 SPI_CS_ADC, 13 ENABLE (3.3 V; low or open = switches open), 15 SPI_CS_ADC2 (3.3 V, active low: chip select of the second ADC U42 on [12] through U44 on [10]; no spare pin left, see [10] D3); even pins GND_FPGA. All nets here are FPGA-side; they cross to the board only through [10]. [ASSUME] +3V3_FPGA from the FPGA powers isolator side 1 (ICD_J3 said no power on J3: decide and update the ICD). J5 on [10] is the board-side twin of this header for the isolator bypass. Analog DAC_CMD / read-back pins are gone: [11] and [12] do that."
 		(exclude_from_sim no)
 		(at 186.76 60.96 0)
 		(size 52 30)
@@ -770,7 +770,7 @@
 		)
 		(uuid "a0e58381-7da8-4c47-8179-6f961d1051b2")
 	)
-	(text_box "MISC NOTE M1:\nFPGA: hold the DAC at 0 for 3 ms after ENABLE (D-08; the AQY214S closes in 0.5 ms, so this can shorten); clear the DAC when ENABLE drops; one SPI bus, two chip selects (DAC [11], ADC [12]); subtract VMID_REF from both read-back channels in software."
+	(text_box "MISC NOTE M1:\nFPGA: hold the DAC at 0 for 3 ms after ENABLE (D-08; the AQY214S closes in 0.5 ms, so this can shorten); clear the DAC when ENABLE drops; one SPI bus, three chip selects (DAC [11], two ADCs [12]); subtract the once-measured VMID_REF (TP29) from both read-back channels in software."
 		(exclude_from_sim no)
 		(at 186.76 113.03 0)
 		(size 52 16)
@@ -941,9 +941,26 @@
 		)
 		(uuid "e21b0ff8-5507-4826-ac1a-7e18ae75460d")
 	)
-	(no_connect
-		(at 121.92 107.95)
-		(uuid "e9abd1d5-5316-49b8-ad1d-6a11e3c07cf1")
+	(wire
+		(pts
+			(xy 121.92 107.95) (xy 111.76 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "386f4436-87b8-4f68-8f61-ed350866cc5b")
+	)
+	(hierarchical_label "SPI_CS_ADC2"
+		(shape output)
+		(at 111.76 107.95 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f07061db-ceb0-4c28-9a50-59a2cf80e70f")
 	)
 	(junction
 		(at 116.84 90.17)

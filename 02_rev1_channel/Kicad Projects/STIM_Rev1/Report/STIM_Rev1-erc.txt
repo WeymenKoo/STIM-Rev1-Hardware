@@ -1,219 +1,33 @@
-ERC report (2026-11-04T17:42:16, Encoding UTF8)
+ERC report (2026-11-08T00:50:37, Encoding UTF8)
 Report includes: Errors, Warnings, Exclusions
 
 ***** Sheet /
-[label_dangling]: Label not connected
-    ; error
-    @(163.83 mm, 106.68 mm): Label 'ISO_SCLK'
-[label_dangling]: Label not connected
-    ; error
-    @(163.83 mm, 110.49 mm): Label 'ISO_MOSI'
-[label_dangling]: Label not connected
-    ; error
-    @(163.83 mm, 114.30 mm): Label 'ISO_CS_DAC'
-[label_dangling]: Label not connected
-    ; error
-    @(173.99 mm, 118.11 mm): Label 'ISO_CS_ADC'
-[label_dangling]: Label not connected
-    ; error
-    @(173.99 mm, 121.92 mm): Label 'ISO_MISO'
-[label_dangling]: Label not connected
-    ; error
-    @(298.45 mm, 161.29 mm): Label 'ISO_SCLK'
-[label_dangling]: Label not connected
-    ; error
-    @(298.45 mm, 165.10 mm): Label 'ISO_MOSI'
-[label_dangling]: Label not connected
-    ; error
-    @(298.45 mm, 168.91 mm): Label 'ISO_CS_ADC'
-[label_dangling]: Label not connected
-    ; error
-    @(375.92 mm, 149.86 mm): Label 'ISO_MISO'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 63.50 mm): Hierarchical Label 'ISO_SCLK'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 71.12 mm): Hierarchical Label 'ISO_MOSI'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 78.74 mm): Hierarchical Label 'ISO_MISO'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 86.36 mm): Hierarchical Label 'ISO_CS_DAC'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 93.98 mm): Hierarchical Label 'ISO_CS_ADC'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 63.50 mm): Hierarchical Label 'ISO_SCLK'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 71.12 mm): Hierarchical Label 'ISO_MOSI'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 78.74 mm): Hierarchical Label 'ISO_CS_DAC'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 86.36 mm): Hierarchical Label 'ISO_SCLK'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 93.98 mm): Hierarchical Label 'ISO_MOSI'
-[label_dangling]: Label not connected
-    ; error
-    @(63.50 mm, 101.60 mm): Hierarchical Label 'ISO_CS_ADC'
-[label_dangling]: Label not connected
-    ; error
-    @(223.52 mm, 63.50 mm): Hierarchical Label 'ISO_MISO'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 106.68 mm): Label 'SPI_SCLK'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 110.49 mm): Label 'SPI_MOSI'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 114.30 mm): Label 'SPI_CS_DAC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 118.11 mm): Label 'SPI_CS_ADC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 121.92 mm): Label 'SPI_MISO'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(85.09 mm, 125.73 mm): Label 'ENABLE'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 92.71 mm): Hierarchical Label 'SPI_SCLK'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 95.25 mm): Hierarchical Label 'SPI_MOSI'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 97.79 mm): Hierarchical Label 'SPI_MISO'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 100.33 mm): Hierarchical Label 'SPI_CS_DAC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 102.87 mm): Hierarchical Label 'SPI_CS_ADC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(111.76 mm, 105.41 mm): Hierarchical Label 'ENABLE'
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s02_standins_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s02_standins_ng.lib'
 File '${KIPRJMOD}/Simulation/models/s02_standins_ng.lib' does not exist.
 Error loading simulation model: could not find base model 'BZX84C6V2_JY' in library '${KIPRJMOD}/Simulation/models/s02_standins_ng.lib'
     ; warning
     @(114.30 mm, 99.06 mm): Symbol D3 [BZX84C6V2]
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s02_standins_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s02_standins_ng.lib'
 Error loading simulation model: could not find base model 'BZX84C6V2_JY' in library '${KIPRJMOD}/Simulation/models/s02_standins_ng.lib'
     ; warning
     @(114.30 mm, 111.76 mm): Symbol D4 [BZX84C6V2]
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 63.50 mm): Hierarchical Label 'SPI_SCLK'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 71.12 mm): Hierarchical Label 'SPI_MOSI'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 78.74 mm): Hierarchical Label 'SPI_MISO'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 86.36 mm): Hierarchical Label 'SPI_CS_DAC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 93.98 mm): Hierarchical Label 'SPI_CS_ADC'
-[isolated_pin_label]: Label connected to only one pin
-    ; warning
-    @(63.50 mm, 101.60 mm): Hierarchical Label 'ENABLE'
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 71.12 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 78.74 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 86.36 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 93.98 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 101.60 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 71.12 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 78.74 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 86.36 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 93.98 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 101.60 mm): Horizontal Wire, length 7.62 mm
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
 Error loading simulation model: could not find base model 'BAS16' in library '${KIPRJMOD}/Simulation/models/s01_ng.lib'
     ; warning
     @(238.76 mm, 130.81 mm): Symbol D1 [BAS16]
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
 Error loading simulation model: could not find base model 'BAS16' in library '${KIPRJMOD}/Simulation/models/s01_ng.lib'
     ; warning
     @(238.76 mm, 153.67 mm): Symbol D2 [BAS16]
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
 Error loading simulation model: could not find base model 'MJD340' in library '${KIPRJMOD}/Simulation/models/s01_ng.lib'
     ; warning
     @(283.21 mm, 121.92 mm): Symbol Q2 [MJD340]
-[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/SPICE_SIM/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
+[simulation_model_issue]: Simulation model library not found at '/Users/kooweymen/Library/CloudStorage/GoogleDrive-kooweymen@gmail.com/Other computers/MBA 1/Documents/UBC/Y5 Courses/Capstone Elec 491/Weymen Cpastone/STIM_Rev1/02_rev1_channel/Kicad Projects/STIM_Rev1/Simulation/models/s01_ng.lib'
 File '${KIPRJMOD}/Simulation/models/s01_ng.lib' does not exist.
 Error loading simulation model: could not find base model 'MJD350' in library '${KIPRJMOD}/Simulation/models/s01_ng.lib'
     ; warning
     @(283.21 mm, 172.72 mm): Symbol Q1 [MJD350]
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 71.12 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 78.74 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 71.12 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 78.74 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 86.36 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 93.98 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(63.50 mm, 101.60 mm): Horizontal Wire, length 7.62 mm
-[unconnected_wire_endpoint]: Unconnected wire endpoint
-    ; warning
-    @(215.90 mm, 63.50 mm): Horizontal Wire, length 7.62 mm
 
 ***** Sheet /[2] Doc - Revision History/
 
@@ -234,10 +48,15 @@ Error loading simulation model: could not find base model 'MJD350' in library '$
 ***** Sheet /[10] Interface - SPI Isolator/
 
 ***** Sheet /[11] Interface - DAC Command/
+[ground_pin_not_ground]: Pin VSS not connected to ground net
+    ; warning
+    @(193.04 mm, 127.00 mm): Symbol U40 Pin 6 [VSS, Power input, Line]
 
 ***** Sheet /[12] Interface - ADC Read-back/
 
- ** ERC messages: 68  Errors 21  Warnings 47
+***** Sheet /[13] Power - Converter Rails/
+
+ ** ERC messages: 7  Errors 0  Warnings 7
 
  ** Ignored checks:
     - Global label only appears once in the schematic

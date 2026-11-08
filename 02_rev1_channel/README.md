@@ -1,9 +1,9 @@
 # Rev 1 analog channel
 
-KiCad source: `../../Kicad Projects/STIM_Rev1/` (rev **2.1.0-dev**, 9 sheets, 126 references = 93 parts incl. 3 DNP
-+ 29 test loops + 4 holes; placed, **unrouted**). Review and action plan: `REVIEW_2026-10-27.md` (decision D-H).
+KiCad source: `Kicad Projects/STIM_Rev1/` (rev **2.1.0-dev**, 13 sheets, 175 references = 133 parts incl. 3 DNP
++ 38 test loops + 4 holes; placed, **unrouted**; PCB not yet updated from the 2026-11-08 schematic). Review and action plan: `REVIEW_2026-10-27.md` (decision D-H).
 Design definition: `rev1-minimal-design-definition.md` (approved 2026-10-25; changed since, see below).
-FPGA interface: `ICD_J3.md` (draft, to CPEN by Oct 31). Requirements background: `design_brief.md` (archive-era).
+FPGA interface: `ICD_J3.md` (rewritten 2026-11-07 for the SPI pinout; to CPEN for sign-off). Requirements background: `design_brief.md` (archive-era).
 
 ## Decision 2026-10-27/28: configurable, not stripped (D-D, D-H)
 
@@ -46,6 +46,9 @@ Same table as `../01_client_board/acceptance-tests.md`: A1-A5 at +/-30 V (JP1/JP
 module, plus R1-R5 and the G rows. Bring-up order (review §6): aux rails and read-back first (R5, R4, R3), then HV
 with the limiter jumpered (JP4 ON), then fit the DN2540 pair and RLIM1 (R2) and repeat with the limiter in.
 
-## Interface (do not design around it until CPEN answers)
-Red Pitaya OUT1/OUT2 are +/-1 V (50 Ω source): DR1 runs two channels with RG3 fitted (G = 5). Telemetry fits the Red
-Pitaya slow inputs AI0-AI3 (0-3.5 V). See `ICD_J3.md`.
+## Interface (2026-11-07)
+J3 carries SPI (three chip selects) + ENABLE + 3.3 V from the FPGA; on-board DAC (U40 AD5761R), two ADCs (U41 I, U42 V, ADS8689) and
+two ISO7741 isolators (U43 = default-low F part for ENABLE / SCLK / MOSI, U44 default-high for the chip selects and MISO). J5 / JP7 bypass the isolators without rework. +5V / +3V3
+LDOs on sheet 13. Decisions still open for Weymen: DAC range vs RG3 (G = 1 with +/-5 V, or +/-3 V range with G = 5);
+LCSC numbers for TPS7A4901, 32.4k / 17.8k 0603, 1 uF 0603 and the 2x8 IDC
+header. The Red Pitaya OUT1/OUT2 +/-1 V path (RG3 fitted, G = 5) stays as the DR1 fallback. See `ICD_J3.md`.

@@ -1143,6 +1143,10 @@
     [
       "4b7c7ece-13b3-4546-8c13-c3483238e92d",
       "[12] Interface - ADC Read-back"
+    ],
+    [
+      "5d3b7a1e-2f44-4c0e-9a61-13c0f0e3a0d1",
+      "[13] Power - Converter Rails"
     ]
   ],
   "text_variables": {
@@ -1154,7 +1158,7 @@
     "GIT_URL": "",
     "PROJECT_NAME": "JY063 STIM stimulator",
     "RELEASE_BODY_1.0.0": "Added: Initial capture of the full Rev 1 channel (P5) from expected_netlist.csv and BOM.csv (P4): 14 sheets, 156 parts, 0 netlist differences, ERC clean.",
-    "RELEASE_BODY_UNRELEASED": "2.1.0-dev (2026-11-04): J3 re-pinned to 2x8 SPI + ENABLE + 3V3_FPGA / GND_FPGA, analog pins removed; isolator [10] carries ENABLE too; rails leave [3]/[4] as ports with the symbols on the cover; cover re-laid in signal order.\n2.1.0-dev (2026-10-28, review D-H): Added R23/R24 200k HV bleeders across C2/C3; RF3/RG3 U3 gain option (G = 5.02 for Red Pitaya +/-1 V, RG3 DNP = unity); JP4 limiter bypass, JP5/JP6 PhotoMOS bypasses; TP13 on DAC_CMD. Changed: F1/F2 Littelfuse 0451.500MRL 125 VDC; M1/M2/RLIM1 DNP (fit at bring-up). Removed: JP3 (current loop now via JP5 with ENABLE low).\nChanged: Rev 1 cut to the analog path for bench bring-up (rev1-minimal-design-definition.md): HV input and fusing, clamp, buffer on the +/-9 V LDOs, Howland pump, DN2540 limiter, two PhotoMOS switches driven by ENABLE, TVS, current and electrode-voltage read-back for the FPGA ADC. 115 parts (was 156) at capture. FPGA connector J3 pinout: DAC_CMD, ENABLE, I_RETURN_ADC, V_ELEC_ADC, VMID_REF and grounds; no power. Rail shunts RSP/RSN 10 Ohm (current measurement; were 47 Ohm for the removed over-current trip). Descriptive net names (BLOCK_FUNCTION), values with tolerance / rating / size, every symbol and footprint in the project libraries, op amps drawn with their supply pins, power rails as power symbols, sheets left-to-right in stage order, top sheet unwired (sheet pins only). PCB: 4-layer JLCPCB JLC04161H-7628 stackup and cited HV design rules.\nAdded: Bench bias jumpers JP1/JP2 (41.2k across each half of the bias string) for +/-15..30 V bench supplies; current-loop header JP3 in the stimulating line; 29 test loops; M3 mounting holes H1-H4; read-back stage (OPA4192: x20.1 on the return shunt, VMID adder, divider buffer, VMID buffer); CHANGELOG.md; Report/.\nRemoved: Over-current sense, return-mismatch trip, trip comparators, fault latch, POR, rail monitors, enable logic, parking switch U6, threshold ladders (all stay simulated in 03_sim/rev1.py for Rev 2).",
+    "RELEASE_BODY_UNRELEASED": "2.1.0-dev (2026-11-07/08): Added U40 AD5761R DAC [11], U41 / U42 ADS8689 ADCs (I and V) [12], U43 / U44 ISO7741 isolators with J5 / JP7 bypass [10], sheet [13] +5V / +3V3 LDOs (U46, U47); J3 pin 15 = SPI_CS_ADC2; decoupling drawn at the IC pins.\n2.1.0-dev (2026-11-04): J3 re-pinned to 2x8 SPI + ENABLE + 3V3_FPGA / GND_FPGA, analog pins removed; isolator [10] carries ENABLE too; rails leave [3]/[4] as ports with the symbols on the cover; cover re-laid in signal order.\n2.1.0-dev (2026-10-28, review D-H): Added R23/R24 200k HV bleeders across C2/C3; RF3/RG3 U3 gain option (G = 5.02 for Red Pitaya +/-1 V, RG3 DNP = unity); JP4 limiter bypass, JP5/JP6 PhotoMOS bypasses; TP13 on DAC_CMD. Changed: F1/F2 Littelfuse 0451.500MRL 125 VDC; M1/M2/RLIM1 DNP (fit at bring-up). Removed: JP3 (current loop now via JP5 with ENABLE low).\nChanged: Rev 1 cut to the analog path for bench bring-up (rev1-minimal-design-definition.md): HV input and fusing, clamp, buffer on the +/-9 V LDOs, Howland pump, DN2540 limiter, two PhotoMOS switches driven by ENABLE, TVS, current and electrode-voltage read-back for the FPGA ADC. 115 parts (was 156) at capture. FPGA connector J3 pinout: DAC_CMD, ENABLE, I_RETURN_ADC, V_ELEC_ADC, VMID_REF and grounds; no power. Rail shunts RSP/RSN 10 Ohm (current measurement; were 47 Ohm for the removed over-current trip). Descriptive net names (BLOCK_FUNCTION), values with tolerance / rating / size, every symbol and footprint in the project libraries, op amps drawn with their supply pins, power rails as power symbols, sheets left-to-right in stage order, top sheet unwired (sheet pins only). PCB: 4-layer JLCPCB JLC04161H-7628 stackup and cited HV design rules.\nAdded: Bench bias jumpers JP1/JP2 (41.2k across each half of the bias string) for +/-15..30 V bench supplies; current-loop header JP3 in the stimulating line; 29 test loops; M3 mounting holes H1-H4; read-back stage (OPA4192: x20.1 on the return shunt, VMID adder, divider buffer, VMID buffer); CHANGELOG.md; Report/.\nRemoved: Over-current sense, return-mismatch trip, trip comparators, fault latch, POR, rail monitors, enable logic, parking switch U6, threshold ladders (all stay simulated in 03_sim/rev1.py for Rev 2).",
     "RELEASE_DATE": "28-Oct-2026",
     "RELEASE_DATE_NUM": "2026-10-28",
     "RELEASE_TITLE_1.0.0": "1.0.0 - 2026-10-23",
@@ -1165,7 +1169,7 @@
     "SHEET_NAME_10": "Interface - SPI Isolator",
     "SHEET_NAME_11": "Interface - DAC Command",
     "SHEET_NAME_12": "Interface - ADC Read-back",
-    "SHEET_NAME_13": "......................................",
+    "SHEET_NAME_13": "Power - Converter Rails",
     "SHEET_NAME_14": "......................................",
     "SHEET_NAME_15": "......................................",
     "SHEET_NAME_16": "......................................",
